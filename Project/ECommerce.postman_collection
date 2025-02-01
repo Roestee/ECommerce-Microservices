@@ -15,12 +15,22 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{catalog_url}}/products",
+							"raw": "{{catalog_url}}/products?pageNumber=2&pageSize=5",
 							"host": [
 								"{{catalog_url}}"
 							],
 							"path": [
 								"products"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "2"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
 							]
 						}
 					},
@@ -28,28 +38,17 @@
 				},
 				{
 					"name": "GET ProductById",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"Id\" : \"0194b842-19a8-4cc7-9036-2fe40bbf3128\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{catalog_url}}/products",
+							"raw": "{{catalog_url}}/products/0194c34e-f749-4781-971c-0415903fe510",
 							"host": [
 								"{{catalog_url}}"
 							],
 							"path": [
-								"products"
+								"products",
+								"0194c34e-f749-4781-971c-0415903fe510"
 							]
 						}
 					},
@@ -93,7 +92,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"Name\": \"New Product B\",\r\n  \"Price\": 253,\r\n  \"Category\": [\r\n    \"c1\",\r\n    \"c3\"\r\n  ],\r\n  \"ImageFile\": \"ImageFile Product B\",\r\n  \"Description\": \"Test Description Product B\"\r\n}",
+							"raw": "{\r\n  \"Name\": \"Docker Test Product\",\r\n  \"Price\": 129.99,\r\n  \"Category\": [\"Test Category\" ],\r\n  \"ImageFile\": \"Docker Test ImageFile \",\r\n  \"Description\": \"Docker Test Description\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -119,7 +118,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"0194b842-19a8-4cc7-9036-2fe40bbf3128\",\r\n    \"name\": \"New Product A\",\r\n    \"category\": [\r\n        \"c1\",\r\n        \"c2\",\r\n        \"c4\"\r\n    ],\r\n    \"description\": \"Test Updated Description Product A\",\r\n    \"imageFile\": \"ImageFile Product A\",\r\n    \"price\": 199\r\n}",
+							"raw": "{\r\n    \"id\": \"0194b842-19a8-4cc7-9036-2fe40bbf3128\",\r\n    \"category\": [\r\n        \"c1\",\r\n        \"c2\",\r\n        \"c4\"\r\n    ],\r\n    \"description\": \"Test Updated Description Product A\",\r\n    \"imageFile\": \"ImageFile Product A\",\r\n    \"price\": 199\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -139,18 +138,35 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "DELETE Product",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{catalog_url}}/products/0194bd80-7a1c-4d5b-9a63-4f6e122f9754",
+							"raw": "{{catalog_url}}/products/0194c34e-f749-4781-971c-0415903fe510",
 							"host": [
 								"{{catalog_url}}"
 							],
 							"path": [
 								"products",
-								"0194bd80-7a1c-4d5b-9a63-4f6e122f9754"
+								"0194c34e-f749-4781-971c-0415903fe510"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{catalog_url}}/health",
+							"host": [
+								"{{catalog_url}}"
+							],
+							"path": [
+								"health"
 							]
 						}
 					},
