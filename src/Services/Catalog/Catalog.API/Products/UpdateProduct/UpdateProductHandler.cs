@@ -9,6 +9,22 @@ public sealed record UpdateProductCommand(Guid Id
 
 public sealed record UpdateProductCommandResult(bool IsSuccess);
 
+public sealed class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
+{
+    public UpdateProductCommandValidator()
+    {
+        RuleFor(p => p.Id).NotEmpty().WithMessage("Id is required!");
+        RuleFor(p => p.Name)
+            .NotEmpty().WithMessage("Name is required!")
+            .Length(3, 150).WithMessage("Name must be between 2 and 150 characters");
+        RuleFor(p => p.ImageFile)
+            .NotEmpty().WithMessage("ImageFile is required!")
+            .Length(3, 250).WithMessage("ImageFile must be between 3 and 250 characters");
+        RuleFor(p => p.Category).NotEmpty().WithMessage("Category is required!");
+        RuleFor(p => p.Price).GreaterThan(0).WithMessage("Price must be greater than 0!");
+    }
+}
+
 internal sealed class UpdateProductCommandHandler(IDocumentSession session
     , ILogger<UpdateProductCommandHandler> logger) : ICommandHandler<UpdateProductCommand, UpdateProductCommandResult>
 {
