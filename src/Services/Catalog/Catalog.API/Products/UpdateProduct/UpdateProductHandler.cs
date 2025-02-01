@@ -31,11 +31,11 @@ internal sealed class UpdateProductCommandHandler(IDocumentSession session
     public async Task<UpdateProductCommandResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
     {
         logger.LogInformation("UpdateProductHandler.Handle called with {@Command}", command);
-        var product = await session.LoadAsync<Product>(command.Id, cancellationToken);
 
+        var product = await session.LoadAsync<Product>(command.Id, cancellationToken);
         if(product is null)
         {
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException(command.Id);
         }
 
         product.Name = command.Name;
