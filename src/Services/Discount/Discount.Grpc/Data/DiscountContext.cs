@@ -5,7 +5,7 @@ namespace Discount.Grpc.Data;
 
 public class DiscountContext : DbContext
 {
-    DbSet<Coupon> Coupones { get; set; } = default!;
+    public DbSet<Coupon> Coupons { get; set; } = default!;
 
     public DiscountContext(DbContextOptions options) : base(options)
     {
